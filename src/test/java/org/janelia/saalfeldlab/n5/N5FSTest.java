@@ -18,6 +18,8 @@ package org.janelia.saalfeldlab.n5;
 
 import java.io.IOException;
 
+import org.junit.Before;
+
 /**
  * Initiates testing of the filesystem-based N5 implementation.
  *
@@ -26,14 +28,9 @@ import java.io.IOException;
  */
 public class N5FSTest extends AbstractN5Test {
 
-	static private String testDirPath = System.getProperty("user.home") + "/tmp/n5-test";
-
-	/**
-	 * @throws IOException
-	 */
-	@Override
-	protected N5Writer createN5Writer() throws IOException {
-
-		return new N5FSWriter(testDirPath);
+	@Before
+	public void setUp() throws IOException {
+		n5 = new N5FSWriter(temp.newFolder("n5-test").getAbsolutePath());
 	}
+
 }

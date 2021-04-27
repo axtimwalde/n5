@@ -32,10 +32,11 @@ import java.util.concurrent.Executors;
 import java.util.function.Predicate;
 
 import org.janelia.saalfeldlab.n5.N5Reader.Version;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -47,6 +48,9 @@ import com.google.gson.reflect.TypeToken;
  * @author Igor Pisarev &lt;pisarevi@janelia.hhmi.org&gt;
  */
 public abstract class AbstractN5Test {
+
+	@Rule
+	public TemporaryFolder temp = new TemporaryFolder();
 
 	static protected final String groupName = "/test/group";
 	static protected final String[] subGroupNames = new String[]{"a", "b", "c"};
@@ -62,9 +66,7 @@ public abstract class AbstractN5Test {
 	static protected float[] floatBlock;
 	static protected double[] doubleBlock;
 
-	static protected N5Writer n5;
-
-	protected abstract N5Writer createN5Writer() throws IOException;
+	protected N5Writer n5;
 
 	protected Compression[] getCompressions() {
 
@@ -81,13 +83,8 @@ public abstract class AbstractN5Test {
 	/**
 	 * @throws IOException
 	 */
-	@Before
-	public void setUpOnce() throws IOException {
-
-		if (n5 != null)
-			return;
-
-		n5 = createN5Writer();
+	@BeforeClass
+	public static void setUpOnce() throws IOException {
 
 		final Random rnd = new Random();
 		byteBlock = new byte[blockSize[0] * blockSize[1] * blockSize[2]];
@@ -103,18 +100,6 @@ public abstract class AbstractN5Test {
 			longBlock[i] = rnd.nextLong();
 			floatBlock[i] = Float.intBitsToFloat(rnd.nextInt());
 			doubleBlock[i] = Double.longBitsToDouble(rnd.nextLong());
-		}
-	}
-
-	/**
-	 * @throws IOException
-	 */
-	@AfterClass
-	public static void rampDownAfterClass() throws IOException {
-
-		if (n5 != null) {
-			Assert.assertTrue(n5.remove());
-			n5 = null;
 		}
 	}
 
