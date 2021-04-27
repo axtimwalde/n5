@@ -196,6 +196,13 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+					<configuration>
+						<argLine>-Xmx2g</argLine>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
