@@ -16,7 +16,7 @@ Chunked datasets can be sparse, i.e. empty chunks do not need to be stored.
 
 ## File-system specification
 
-*version @project.version@*
+*version @n5-spec.version@*
 
 N5 group is not a single file but simply a directory on the file system.  Meta-data is stored as a JSON file per each group/ directory.  Tensor datasets can be chunked and chunks are stored as individual files.  This enables parallel reading and writing on a cluster.
 

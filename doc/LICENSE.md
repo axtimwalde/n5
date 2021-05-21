@@ -1,6 +1,6 @@
 ## BSD 2-Clause License
 
-Copyright (c) @project.inceptionYear@-2020, Stephan Saalfeld
+Copyright (c) @project.inceptionYear@-@current.year@, Stephan Saalfeld
 
 All rights reserved.
 

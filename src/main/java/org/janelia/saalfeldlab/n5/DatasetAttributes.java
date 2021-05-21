@@ -100,7 +100,7 @@ public class DatasetAttributes implements Serializable {
 		final HashMap<String, Object> map = new HashMap<>();
 		map.put(dimensionsKey, dimensions);
 		map.put(blockSizeKey, blockSize);
-		map.put(dataTypeKey, dataType.toString());
+		map.put(dataTypeKey, dataType);
 		map.put(compressionKey, compression);
 		return map;
 	}

@@ -41,8 +41,6 @@ import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.scijava.util.VersionUtils;
-
 /**
  * A simple structured container for hierarchies of chunked
  * n-dimensional datasets and attributes.
@@ -188,12 +186,7 @@ public interface N5Reader extends AutoCloseable {
 	/**
 	 * SemVer version of this N5 spec.
 	 */
-	public static final Version VERSION =
-			new Version(
-					VersionUtils.getVersionFromPOM(
-							N5Reader.class,
-							"org.janelia.saalfeldlab",
-							"n5"));
+	public static final Version VERSION = new Version(2, 6, 1);
 
 	/**
 	 * Version attribute key.

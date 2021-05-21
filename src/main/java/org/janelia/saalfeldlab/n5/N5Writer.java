@@ -115,7 +115,10 @@ public interface N5Writer extends N5Reader {
 	 * @return true if removal was successful, false otherwise
 	 * @throws IOException
 	 */
-	public boolean remove() throws IOException;
+	public default boolean remove() throws IOException {
+
+		return remove("/");
+	}
 
 	/**
 	 * Creates a dataset.  This does not create any data but the path and

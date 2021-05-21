@@ -11,7 +11,7 @@
 
 	<groupId>org.janelia.saalfeldlab</groupId>
 	<artifactId>n5</artifactId>
-	<version>2.5.2-SNAPSHOT</version>
+	<version>3.0.0-SNAPSHOT</version>
 
 	<name>N5</name>
 	<description>Not HDF5</description>
@@ -104,6 +104,8 @@
 		<releaseProfiles>deploy-to-scijava</releaseProfiles>
 
 		<commons-collections4.version>4.2</commons-collections4.version>
+
+		<n5-spec.version>2.6.1</n5-spec.version>
 	</properties>
 
 	<dependencies>
@@ -172,6 +174,23 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>timestamp-property</id>
+							<goals>
+								<goal>timestamp-property</goal>
+							</goals>
+							<phase>validate</phase>
+							<configuration>
+								<name>current.year</name>
+								<pattern>yyyy</pattern>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
 					<executions>
